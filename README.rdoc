@@ -20,7 +20,7 @@ Some, however, require you to supply your own answer.  If you see the method +__
 double underscore) listed, it is a hint to you to supply your own code in order to
 make it work correctly.
 
-== Installing Ruby
+== Installing Rub
 
 If you do not have Ruby setup, please visit http://ruby-lang.org/en/downloads/ for
 operating specific instructions.  In order to run this you need ruby and rake
