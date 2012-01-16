@@ -66,5 +66,4 @@ class AboutDiceProject < EdgeCase::Koan
     dice.roll(1)
     assert_equal 1, dice.values.size
   end
-
 end
