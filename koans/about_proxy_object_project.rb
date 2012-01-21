@@ -18,6 +18,16 @@ class Proxy
     # ADD MORE CODE HERE
   end
 
+  attr_accessor :channel, :on
+
+  def on?
+    self.on
+  end
+
+  def power
+    self.on = true
+  end
+
   # WRITE CODE HERE
 end
 
