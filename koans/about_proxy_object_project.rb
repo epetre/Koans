@@ -12,23 +12,37 @@ require File.expand_path(File.dirname(__FILE__) + '/edgecase')
 # missing handler and any other supporting methods.  The specification
 # of the Proxy class is given in the AboutProxyObjectProject koan.
 
+
+
+# http://codereview.stackexchange.com/questions/2015/ruby-koans-proxy-project
+# Your Proxy class should derive from BasicObject (if you use ruby 1.9.x). At the moment any method defined on Proxy is by definition not missing. For example given:
+# foo = Foo.new
+# pfoo = Proxy.new(foo)
+# if I asked for pfoo.class I would get Proxy because class is a method in the inheritance of Proxy. With BasicObject this would instead return Foo and add an entry for "class" in the proxy object.
+
 class Proxy
+
   def initialize(target_object)
     @object = target_object
-    # ADD MORE CODE HERE
+    @messages = Hash.new(0)
   end
 
-  attr_accessor :channel, :on
-
-  def on?
-    self.on
+  def method_missing(method_name, *args, &block)
+    @messages[method_name] += 1
+    @object.__send__(method_name, *args, &block)
   end
 
-  def power
-    self.on = true
+  def messages
+    @messages.keys
   end
 
-  # WRITE CODE HERE
+  def called? method_name
+    @messages.include? method_name
+  end
+
+  def number_of_times_called method_name
+    @messages[method_name]
+  end
 end
 
 # The proxy object should pass the following Koan:
